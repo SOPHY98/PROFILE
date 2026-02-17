@@ -1,0 +1,25 @@
+name: Deployment to Jira
+on:
+  push:
+    branches:
+      - 'SCRM-*' # This triggers for any branch starting with your Jira key
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    # CRITICAL: This 'environment' section is what Jira tracks
+    environment: 
+      name: production 
+      url: https://your-app-url.com
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Fake Deployment Step
+        run: |
+          echo "Deploying branch ${{ github.ref_name }}..."
+          # Add your actual deployment commands here (e.g., npm run build)
+
